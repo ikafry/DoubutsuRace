@@ -1,0 +1,30 @@
+/**
+* キャラクター操作
+*/
+		//速さの計算
+        if (Input.GetButton("Accel"))
+        {
+            Speed += AccelPerSecond * Time.deltaTime;
+            if (Speed > MaxSpeed) Speed = MaxSpeed;            
+        }
+        else
+        {
+            Speed -= AccelPerSecond * Time.deltaTime / 2;
+            if (Speed < 0) Speed = 0;
+        }
+
+        if (Input.GetButton("Brake"))
+        {
+            Speed -= BrakePerSecond * Time.deltaTime;
+            if (Speed < 0) Speed = 0;
+            //if (Speed < -MaxSpeed) Speed = -MaxSpeed;
+        }
+
+        rb.velocity = transform.forward * Speed;
+
+        //旋回する角度の計算
+        float Handle = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up, TurnPerSecond * Handle * Time.deltaTime);
+/**
+* ここまで
+*/        
