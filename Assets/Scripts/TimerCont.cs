@@ -8,6 +8,7 @@ public class TimerCont : MonoBehaviour
     public Text UIText;
     public Text LapValue;
     public int lapMax;
+    public GameObject canvas;
     private float countTime;
     private bool timerStart;
     private bool timerFinished;
@@ -53,6 +54,7 @@ public class TimerCont : MonoBehaviour
             else if (lapNum == 1 && c_check1 && c_check2 && c_check3)
             {
                 timerFinished = true;
+                canvas.SetActive(true);
             }
             Debug.Log(lapNum);
         }
