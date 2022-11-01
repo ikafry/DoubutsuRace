@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullet : MonoBehaviour
+public class FireBullet_orig : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("弾の発射場所")]

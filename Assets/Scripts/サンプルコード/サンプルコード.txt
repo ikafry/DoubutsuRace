@@ -1,0 +1,110 @@
+/** 2.2 プレイヤーを操作する 
+ ** AnimaController.cs */
+/** プレイヤー操作のコード */
+    //速さの計算
+    if (Input.GetButton("Accel"))
+    {
+        Speed += AccelPerSecond * Time.deltaTime;
+        if (Speed > MaxSpeed) Speed = MaxSpeed;            
+    }
+    else if (Input.GetButton("Brake"))
+    {
+        if(Speed > 0f){
+            Speed -= BrakePerSecond * Time.deltaTime;
+        }
+        else{
+            Speed = -3;
+        }
+
+        //if (Speed < -MaxSpeed) Speed = -MaxSpeed;
+    }
+    else
+    {
+        if(Speed > 0.0f){
+            Speed -= AccelPerSecond * Time.deltaTime / 2;
+            if(Speed < 0.0f){
+                Speed = 0f;
+            }
+        }
+        else if (Speed < 0.0f) {
+            Speed += AccelPerSecond * Time.deltaTime / 2;
+            if(Speed > 0.0f){
+                Speed = 0f;
+            }
+        }
+    }
+
+
+    rb.velocity = transform.forward * Speed;
+
+
+    //旋回する角度の計算
+    float Handle = Input.GetAxis("Horizontal");
+    transform.Rotate(Vector3.up, TurnPerSecond * Handle * Time.deltaTime);
+/** プレイヤー操作のコード */
+
+
+/** 2.5 タイマーを表示する
+ ** TimerCont.cs */
+/** タイマーのコード 1 */
+    if (timerStart == true && timerFinished == false)
+        countTime += Time.deltaTime;
+
+    //UIに時間を表示
+    UIText.text = countTime.ToString("F2");
+    LapValue.text = (lapMax - lapNum + 1).ToString() + "/" + lapMax.ToString();
+/** タイマーのコード 1 */
+
+/** タイマーのコード 2 */
+    //スタートラインに触れたときの処理
+    if (other.gameObject.tag == "StartLine")
+    {
+        if (timerStart == false)
+            timerStart = true;
+        else if (lapNum > 1 && c_check1 && c_check2 && c_check3)
+        {
+            lapNum--;
+            Debug.Log("周回！");
+            c_check1 = c_check2 = c_check3 = false;
+        }
+        /** ここからゲーム終了画面のコード */
+        
+        /** ここまでゲーム終了画面のコード */
+    }
+
+    //各チェックポイントに触れたときの処理
+    if (other.gameObject.tag == "Check1")
+    {
+        c_check1 = true;
+        Debug.Log("1: " + c_check1);
+    }
+    if (other.gameObject.tag == "Check2")
+    {
+        c_check2 = true;
+        Debug.Log("2: " + c_check2);
+    }
+    if (other.gameObject.tag == "Check3")
+    {
+        c_check3 = true;
+        Debug.Log("3: " + c_check3);
+    }
+/** タイマーのコード 2 */
+
+
+/** 2.6 タイトル画面をつくる
+ ** SceneMove.cs */
+/** タイトル画面のコード */
+    SceneManager.LoadScene("stage_penguin");
+/** タイトル画面のコード */
+
+
+/** 2.7 ゲーム終了画面をつくる
+ ** TimerCont.cs */
+/** ゲーム終了画面のコード */
+    else if (lapNum == 1 && c_check1 && c_check2 && c_check3)
+    {
+        //タイマーを止めて、終了画面をアクティブにする
+        timerFinished = true;
+        canvas.SetActive(true);
+    }
+/** ゲーム終了画面のコード */

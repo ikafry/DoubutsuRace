@@ -7,6 +7,10 @@ TagManager:
   - Shootable
   - Bullet
   - hurdle
+  - StartLine
+  - Check1
+  - Check2
+  - Check3
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - Lighting
   - Ground
   - Postprocessing
-  - 
+  - InstructionUI
   - 
   - 
   - 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,63 +22,9 @@ public class AnimalController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //キャラクター操作のコード
-        //速さの計算
-        if (Input.GetButton("Accel"))
-        {
-            Speed += AccelPerSecond * Time.deltaTime;
-            if (Speed > MaxSpeed) Speed = MaxSpeed;            
-        }
-        else if (Input.GetButton("Brake"))
-        {
-            if(Speed > 0f){
-                Speed -= BrakePerSecond * Time.deltaTime;
-            }
-            else{
-                Speed = -3;
-            }
+        /** ここからプレイヤー操作のコード */
 
-            //if (Speed < -MaxSpeed) Speed = -MaxSpeed;
-        }
-        else
-        {
-            if(Speed > 0.0f){
-                Speed -= AccelPerSecond * Time.deltaTime / 2;
-                if(Speed < 0.0f){
-                    Speed = 0f;
-                }
-            }
-            else if (Speed < 0.0f) {
-                Speed += AccelPerSecond * Time.deltaTime / 2;
-                if(Speed > 0.0f){
-                    Speed = 0f;
-                }
-            }
-        }
-
-
-        rb.velocity = transform.forward * Speed;
-
-
-        //旋回する角度の計算
-        float Handle = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, TurnPerSecond * Handle * Time.deltaTime);
+        /** ここまでプレイヤー操作のコード */
 
     }
-
-    // IEnumerator DashMove()
-    // {
-    //     //ここに処理を書く
-    //     NowDash = true;
-    //     float NowSpeed = Speed;
-    //     Speed += DashSpeed;
-
-    //     //5s停止
-    //     yield return new WaitForSeconds(3);
-
-    //     //ここに再開後の処理を書く
-    //     Speed = NowSpeed;
-    //     NowDash = false;
-
-    // }
 }

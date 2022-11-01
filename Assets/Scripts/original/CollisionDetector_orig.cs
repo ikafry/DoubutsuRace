@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class FireBullet : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public class CollisionDetector_orig : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("弾の発射場所")]
@@ -15,33 +16,30 @@ public class FireBullet : MonoBehaviour
     [SerializeField]
     [Tooltip("弾の速さ")]
     private float speed;
-    
-    public GameObject animal;      
-    private AnimalController animal_script;
-    private float realspeed;
 
-    void Start(){
-        animal_script = animal.GetComponent<AnimalController>();
-    }
+    [SerializeField] private TriggerEvent onTriggerStay = new TriggerEvent();
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Is TriggerがONで他のColliderと重なっているときに呼ばれ続ける
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
     {
-        // スペースキーが押されたかを判定
-        if (Input.GetButtonDown("FireBullet"))
-        {
-            // 弾を発射する
-            LauncherShot();
+        if(other.CompareTag("Player")){
+        // InspectorタブのonTriggerStayで指定された処理を実行する
+        LauncherShot();
         }
     }
 
-    /// <summary>
-	/// 弾の発射
-	/// </summary>
+    // UnityEventを継承したクラスに[Serializable]属性を付与することで、Inspectorウインドウ上に表示できるようになる。
+    [Serializable]
+    public class TriggerEvent : UnityEvent<Collider>
+    {
+    }
+
     private void LauncherShot()
     {
-        realspeed = animal_script.Speed + (float)speed;
-        Debug.Log("FireBullet " + realspeed);
+        speed = 3f;
         // 弾を発射する場所を取得
         Vector3 bulletPosition = firingPoint.transform.position;
         // 上で取得した場所に、"bullet"のPrefabを出現させる
@@ -49,10 +47,10 @@ public class FireBullet : MonoBehaviour
         // 出現させたボールのforward(z軸方向)
         Vector3 direction = newBall.transform.forward;
         // 弾の発射方向にnewBallのz方向(ローカル座標)を入れ、弾オブジェクトのrigidbodyに衝撃力を加える
-        newBall.GetComponent<Rigidbody>().AddForce(direction * realspeed, ForceMode.Impulse);
+        newBall.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Impulse);
         // 出現させたボールの名前を"bullet"に変更
         newBall.name = bullet.name;
         // 出現させたボールを0.8秒後に消す
-        Destroy(newBall, 0.8f);
+        Destroy(newBall, 5f);
     }
 }
