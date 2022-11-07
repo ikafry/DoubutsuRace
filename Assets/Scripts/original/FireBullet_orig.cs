@@ -17,11 +17,11 @@ public class FireBullet_orig : MonoBehaviour
     private float speed;
     
     public GameObject animal;      
-    private AnimalController animal_script;
+    private AnimalController_orig animal_script;
     private float realspeed;
 
     void Start(){
-        animal_script = animal.GetComponent<AnimalController>();
+        animal_script = animal.GetComponent<AnimalController_orig>();
     }
 
     // Update is called once per frame
