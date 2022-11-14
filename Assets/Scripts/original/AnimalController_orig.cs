@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimalController_orig : MonoBehaviour
 {
-    public float MaxSpeed = 100; //最高速を決める変数
+    public float MaxSpeed = 50; //最高速を決める変数
     public float AccelPerSecond = 10; //加速力を決める変数
     public float TurnPerSecond = 180; //旋回力を決める変数
     public float BrakePerSecond = 30; //ブレーキの強さ

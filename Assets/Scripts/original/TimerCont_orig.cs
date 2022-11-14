@@ -5,14 +5,11 @@ using UnityEngine.Animations;
 
 public class TimerCont_orig : MonoBehaviour
 {
-    public Text UIText;
-    public Text LapValue;
-    public int lapMax;
+    public Text TimeText;
     public GameObject canvas;
     private float countTime;
     private bool timerStart;
     private bool timerFinished;
-    private int lapNum;
     private bool c_check1;
     private bool c_check2;
     private bool c_check3;
@@ -26,7 +23,6 @@ public class TimerCont_orig : MonoBehaviour
         c_check2 = false;
         c_check3 = false;
         countTime = 0;
-        lapNum = lapMax;
     }
 
     // Update is called once per frame
@@ -35,12 +31,23 @@ public class TimerCont_orig : MonoBehaviour
         if (timerStart == true && timerFinished == false)
             countTime += Time.deltaTime;
 
-        UIText.text = countTime.ToString("F2");
-        LapValue.text = (lapMax - lapNum + 1).ToString() + "/" + lapMax.ToString();
+        TimeText.text = countTime.ToString("F2");
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "StartLine")
+        {
+            if (timerStart == false)
+                timerStart = true;
+        }
+        if (other.gameObject.tag == "Check1")
+        {
+            timerFinished = true;
+            canvas.SetActive(true);
+        }
+
+        /* 1周が長いバージョン
         if (other.gameObject.tag == "StartLine")
         {
             if (timerStart == false)
@@ -73,6 +80,6 @@ public class TimerCont_orig : MonoBehaviour
             c_check3 = true;
             Debug.Log("3: " + c_check3);
         }
-
+        */
     }
 }
