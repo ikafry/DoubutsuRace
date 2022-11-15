@@ -401,8 +401,6 @@ GameObject:
   - component: {fileID: 6035935912187216966}
   - component: {fileID: 7969555234238444564}
   - component: {fileID: 5826729094800751488}
-  - component: {fileID: 2501238916168006609}
-  - component: {fileID: 9220898071575123225}
   m_Layer: 0
   m_Name: Penguin
   m_TagString: Player
@@ -472,39 +470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeText: {fileID: 0}
   canvas: {fileID: 0}
---- !u!114 &2501238916168006609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3783641084568145993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e12377d495af70488a83fe1669216c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firingPoint: {fileID: 3783641084568145993}
-  bullet: {fileID: 4595304354163939153, guid: d8f70c45be8fa2440bc6c595cfdbb521, type: 3}
-  speed: 30
-  animal: {fileID: 3783641084568145993}
---- !u!114 &9220898071575123225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3783641084568145993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cdd6bdb88d090d49944deaf616d939e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxSpeed: 50
-  AccelPerSecond: 10
-  TurnPerSecond: 180
-  BrakePerSecond: 30
-  Speed: 0
 --- !u!1 &3976675740735429918
 GameObject:
   m_ObjectHideFlags: 0

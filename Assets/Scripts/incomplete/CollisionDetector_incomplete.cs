@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
-public class CollisionDetector_orig : MonoBehaviour
+public class CollisionDetector_incomplete : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("弾の発射場所")]

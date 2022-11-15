@@ -5,19 +5,16 @@ using UnityEngine.Animations;
 
 public class TimerCont : MonoBehaviour
 {
-    public Text UIText;
-    public Text LapValue;
-    public int lapMax;
+    public Text TimeText;
     public GameObject canvas;
     private float countTime;
     private bool timerStart;
     private bool timerFinished;
-    private int lapNum;
     private bool c_check1;
     private bool c_check2;
     private bool c_check3;
 
-    // 変数の初期化
+    // Use this for initialization
     void Start()
     {
         timerStart = false;
@@ -26,22 +23,63 @@ public class TimerCont : MonoBehaviour
         c_check2 = false;
         c_check3 = false;
         countTime = 0;
-        lapNum = lapMax;
     }
 
-    // 毎フレーム呼び出される関数
+    // Update is called once per frame
     void FixedUpdate()
     {
-        /** ここからタイマーのコード 1 */
-        
-        /** ここまでタイマーのコード 1 */
+        if (timerStart == true && timerFinished == false)
+            countTime += Time.deltaTime;
+
+        TimeText.text = countTime.ToString("F2");
     }
 
-    //オブジェクトに触れた時に呼び出される関数
     private void OnTriggerEnter(Collider other)
     {
-        /** ここからタイマーのコード 2 */
-        
-        /** ここまでタイマーのコード 2 */
+        if (other.gameObject.tag == "StartLine")
+        {
+            if (timerStart == false)
+                timerStart = true;
+        }
+        if (other.gameObject.tag == "Check1")
+        {
+            timerFinished = true;
+            canvas.SetActive(true);
+        }
+
+        /* 1周が長いバージョン
+        if (other.gameObject.tag == "StartLine")
+        {
+            if (timerStart == false)
+                timerStart = true;
+            else if (lapNum > 1 && c_check1 && c_check2 && c_check3)
+            {
+                lapNum--;
+                Debug.Log("周回！");
+                c_check1 = c_check2 = c_check3 = false;
+            }
+            else if (lapNum == 1 && c_check1 && c_check2 && c_check3)
+            {
+                timerFinished = true;
+                canvas.SetActive(true);
+            }
+            Debug.Log(lapNum);
+        }
+        if (other.gameObject.tag == "Check1")
+        {
+            c_check1 = true;
+            Debug.Log("1: " + c_check1);
+        }
+        if (other.gameObject.tag == "Check2")
+        {
+            c_check2 = true;
+            Debug.Log("2: " + c_check2);
+        }
+        if (other.gameObject.tag == "Check3")
+        {
+            c_check3 = true;
+            Debug.Log("3: " + c_check3);
+        }
+        */
     }
 }

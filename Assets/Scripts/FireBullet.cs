@@ -14,7 +14,7 @@ public class FireBullet : MonoBehaviour
 
     [SerializeField]
     [Tooltip("弾の速さ")]
-    private float speed;
+    private float speed = 30;
     
     public GameObject animal;      
     private AnimalController animal_script;

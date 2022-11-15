@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager_orig : MonoBehaviour
+public class CameraManager_incomplete : MonoBehaviour
 {
     private Camera cam;
     public GameObject animal;
-    private AnimalController_orig animal_script;
+    private AnimalController animal_script;
     private float foview;
     public float foDelta;
 
@@ -14,7 +14,7 @@ public class CameraManager_orig : MonoBehaviour
     void Start()
     {
         //animal = GameObject.Find("Penguin");
-        animal_script = animal.GetComponent<AnimalController_orig>();
+        animal_script = animal.GetComponent<AnimalController>();
         cam = GetComponent<Camera>();
         foview = cam.fieldOfView;
         foDelta = 5;

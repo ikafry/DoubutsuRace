@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DoubutsuGameManager_orig : MonoBehaviour
+public class DoubutsuGameManager_incomplete : MonoBehaviour
 {
     void Start()
     {

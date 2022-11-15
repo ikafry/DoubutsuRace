@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitController_orig : MonoBehaviour
+public class HitController_incomplete : MonoBehaviour
 {
     public GameObject breakEffect;
 

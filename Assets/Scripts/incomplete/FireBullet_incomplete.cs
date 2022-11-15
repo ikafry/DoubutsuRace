@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullet_orig : MonoBehaviour
+public class FireBullet_incomplete : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("弾の発射場所")]
@@ -17,11 +17,11 @@ public class FireBullet_orig : MonoBehaviour
     private float speed;
     
     public GameObject animal;      
-    private AnimalController_orig animal_script;
+    private AnimalController animal_script;
     private float realspeed;
 
     void Start(){
-        animal_script = animal.GetComponent<AnimalController_orig>();
+        animal_script = animal.GetComponent<AnimalController>();
     }
 
     // Update is called once per frame

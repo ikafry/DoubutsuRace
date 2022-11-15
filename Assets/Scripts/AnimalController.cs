@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
-    public float MaxSpeed = 100; //最高速を決める変数
+    public float MaxSpeed = 50; //最高速を決める変数
     public float AccelPerSecond = 10; //加速力を決める変数
     public float TurnPerSecond = 180; //旋回力を決める変数
     public float BrakePerSecond = 30; //ブレーキの強さ
@@ -23,6 +23,48 @@ public class AnimalController : MonoBehaviour
     void FixedUpdate()
     {
         /** ここからプレイヤー操作のコード */
+        /** プレイヤー操作 */
+		//速さの計算
+        if (Input.GetButton("Accel"))
+        {
+            Speed += AccelPerSecond * Time.deltaTime;
+            if (Speed > MaxSpeed) Speed = MaxSpeed;            
+        }
+        else if (Input.GetButton("Brake"))
+        {
+            if(Speed > 0f){
+                Speed -= BrakePerSecond * Time.deltaTime;
+            }
+            else{
+                Speed = -3;
+            }
+
+            //if (Speed < -MaxSpeed) Speed = -MaxSpeed;
+        }
+        else
+        {
+            if(Speed > 0.0f){
+                Speed -= AccelPerSecond * Time.deltaTime / 2;
+                if(Speed < 0.0f){
+                    Speed = 0f;
+                }
+            }
+            else if (Speed < 0.0f) {
+                Speed += AccelPerSecond * Time.deltaTime / 2;
+                if(Speed > 0.0f){
+                    Speed = 0f;
+                }
+            }
+        }
+
+
+        rb.velocity = transform.forward * Speed;
+
+
+        //旋回する角度の計算
+        float Handle = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up, TurnPerSecond * Handle * Time.deltaTime);
+        /** ここまでプレイヤー操作 */
 
         /** ここまでプレイヤー操作のコード */
 

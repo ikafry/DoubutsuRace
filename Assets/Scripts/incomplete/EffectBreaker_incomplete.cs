@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectBreaker_orig : MonoBehaviour
+public class EffectBreaker_incomplete : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

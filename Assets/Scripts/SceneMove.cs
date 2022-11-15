@@ -7,8 +7,6 @@ public class SceneMove : MonoBehaviour
 {
     public void PenguinScene()
     {
-        /** ここからタイトル画面のコード */
-        
-        /** ここまでタイトル画面のコード */
+        SceneManager.LoadScene("stage_penguin");
     }
 }
